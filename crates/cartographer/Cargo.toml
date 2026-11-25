@@ -1,0 +1,8 @@
+[package]
+name = "rustein-island-cartographer"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "Privileged spectator and interactive game controller"
+
+[dependencies]

@@ -1,0 +1,8 @@
+[package]
+name = "rustein-island-admiralty"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "Authoritative referee"
+
+[dependencies]

@@ -1,0 +1,8 @@
+[package]
+name = "rustein-island-islands"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "Island implementations"
+
+[dependencies]

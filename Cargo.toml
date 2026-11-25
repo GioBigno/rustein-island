@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/chart",
+    "crates/admiralty",
+    "crates/ship",
+    "crates/islands",
+    "crates/cartographer",
+    "crates/harness",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[workspace.dependencies]
+rustein-island-chart = { path = "crates/chart" }
+rustein-island-admiralty = { path = "crates/admiralty" }
+rustein-island-ship = { path = "crates/ship" }
+rustein-island-islands = { path = "crates/islands" }
+rustein-island-cartographer = { path = "crates/cartographer" }
