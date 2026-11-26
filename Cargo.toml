@@ -15,6 +15,7 @@ edition = "2024"
 publish = false
 
 [workspace.dependencies]
+ap-2026-common-code = { git = "https://github.com/SharedCode-UniTn-AP-2026/Common_Code-AP_2026.git" }
 rustein-island-chart = { path = "crates/chart" }
 rustein-island-admiralty = { path = "crates/admiralty" }
 rustein-island-ship = { path = "crates/ship" }

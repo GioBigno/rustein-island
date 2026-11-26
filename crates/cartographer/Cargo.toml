@@ -6,3 +6,4 @@ publish.workspace = true
 description = "Privileged spectator and interactive game controller"
 
 [dependencies]
+ap-2026-common-code.workspace = true

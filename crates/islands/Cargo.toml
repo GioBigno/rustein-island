@@ -6,3 +6,4 @@ publish.workspace = true
 description = "Island implementations"
 
 [dependencies]
+ap-2026-common-code.workspace = true
