@@ -4,6 +4,7 @@
 use ap_2026_common_code::geometry::{Cell, Terrain};
 use ap_2026_common_code::shared::{IslandId, Params, Round, Seed, ShipId, TurnToken};
 use rand::rngs::StdRng;
+use rand::seq::SliceRandom;
 use rand::{Rng, RngExt, SeedableRng};
 use std::collections::BTreeMap;
 use std::collections::BTreeSet;
@@ -136,6 +137,17 @@ impl Chart {
                     reserved.insert(neighbour);
                 }
             }
+        }
+
+        //Insert cliffs
+        let mut availables: Vec<Cell> = sea.keys().copied().filter(|c| !reserved.contains(c)).collect();
+        if availables.len() < params.cliff_count as usize {
+            return Chart::generate_attempt(seed.wrapping_add(1), params, remaining_attempts - 1);
+        }
+
+        availables.shuffle(&mut rng);
+        for i in 0..params.cliff_count {
+            sea.insert(availables[i as usize], Terrain::Cliff);
         }
 
         todo!()
