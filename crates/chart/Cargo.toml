@@ -7,3 +7,4 @@ description = "Deterministic Archipelago game engine"
 
 [dependencies]
 ap-2026-common-code.workspace = true
+rand = "0.10.4"
