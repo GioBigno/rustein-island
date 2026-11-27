@@ -150,6 +150,22 @@ impl Chart {
             sea.insert(availables[i as usize], Terrain::Cliff);
         }
 
+        //Insert rocks
+        let mut availables: Vec<Cell> = sea
+            .iter()
+            .filter(|&(cell, terrain)| *terrain == Terrain::Clear && !reserved_corners.contains(cell))
+            .map(|(&cell, _)| cell)
+            .collect();
+
+        if availables.len() < params.rock_count as usize {
+            return Chart::generate_attempt(seed.wrapping_add(1), params, remaining_attempts - 1);
+        }
+
+        availables.shuffle(&mut rng);
+        for i in 0..params.rock_count {
+            sea.insert(availables[i as usize], Terrain::Rock);
+        }
+
         todo!()
     }
 }
