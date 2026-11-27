@@ -45,7 +45,7 @@ struct Chart {
 
 impl Chart {
     fn generate(seed: Seed, params: &Params) -> Result<Self, GenError> {
-        return Chart::generate_attempt(seed, params, MAX_GENRATION_ATTEMPTS);
+        Chart::generate_attempt(seed, params, MAX_GENRATION_ATTEMPTS)
     }
 
     fn generate_attempt(seed: Seed, params: &Params, remaining_attempts: u8) -> Result<Self, GenError> {
@@ -108,7 +108,7 @@ impl Chart {
             let mut footprint = vec![start_cell];
             sea.insert(start_cell, Terrain::Island(IslandId(i)));
 
-            while footprint.len() < (island_size as usize) {
+            while footprint.len() < usize::from(island_size) {
                 let candidates: Vec<Cell> = footprint
                     .iter()
                     .flat_map(|land| land.neighbours())
@@ -141,13 +141,13 @@ impl Chart {
 
         //Insert cliffs
         let mut availables: Vec<Cell> = sea.keys().copied().filter(|c| !reserved.contains(c)).collect();
-        if availables.len() < params.cliff_count as usize {
+        if availables.len() < usize::from(params.cliff_count) {
             return Chart::generate_attempt(seed.wrapping_add(1), params, remaining_attempts - 1);
         }
 
         availables.shuffle(&mut rng);
-        for i in 0..params.cliff_count {
-            sea.insert(availables[i as usize], Terrain::Cliff);
+        for cell in availables.into_iter().take(usize::from(params.cliff_count)) {
+            sea.insert(cell, Terrain::Cliff);
         }
 
         //Insert rocks
@@ -157,13 +157,13 @@ impl Chart {
             .map(|(&cell, _)| cell)
             .collect();
 
-        if availables.len() < params.rock_count as usize {
+        if availables.len() < usize::from(params.rock_count) {
             return Chart::generate_attempt(seed.wrapping_add(1), params, remaining_attempts - 1);
         }
 
         availables.shuffle(&mut rng);
-        for i in 0..params.rock_count {
-            sea.insert(availables[i as usize], Terrain::Rock);
+        for cell in availables.into_iter().take(usize::from(params.rock_count)) {
+            sea.insert(cell, Terrain::Cliff);
         }
 
         todo!()
