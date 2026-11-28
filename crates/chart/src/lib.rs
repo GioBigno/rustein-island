@@ -163,7 +163,7 @@ impl Chart {
 
         availables.shuffle(&mut rng);
         for cell in availables.into_iter().take(usize::from(params.rock_count)) {
-            sea.insert(cell, Terrain::Cliff);
+            sea.insert(cell, Terrain::Rock);
         }
 
         todo!()
